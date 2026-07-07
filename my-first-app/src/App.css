@@ -1,0 +1,13 @@
+body{
+  text-align: center;
+}
+
+#sum{
+    color: red;
+}
+#diff{
+    color: blue;
+}
+#mul{
+    color: orange;
+}
