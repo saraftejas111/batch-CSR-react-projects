@@ -95,7 +95,7 @@ employees.map((e) => {
 function deleteById(id) {
   console.log("deleted id --> ", id);
 
-  const newData = employees.filter((e) => e.id !== id);
+  const newData = employees.filter((e) => e.id != id);
 
   tbody.innerHTML = "";
 
@@ -146,6 +146,9 @@ function addEmployee() {
     
     </tr>`;
   });
+
+
+  console.log(employees)
 }
 
 function updateEmployee(empId) {

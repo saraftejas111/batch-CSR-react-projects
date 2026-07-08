@@ -1,0 +1,100 @@
+<!-- 
+optimized way 
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee CRUD App</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            margin: 30px;
+        }
+
+        table {
+            border-collapse: collapse;
+            margin: auto;
+            width: 60%;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 10px;
+        }
+
+        input {
+            width: 220px;
+            padding: 8px;
+            margin: 5px;
+        }
+
+        button {
+            padding: 8px 15px;
+            cursor: pointer;
+        }
+
+        .delete {
+            background: crimson;
+            color: white;
+        }
+
+        .edit {
+            background: royalblue;
+            color: white;
+        }
+
+        #saveBtn {
+            margin-top: 15px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <h2>Employee CRUD Application</h2>
+
+    <input type="number" id="id" placeholder="Employee ID"><br>
+
+    <input type="text" id="name" placeholder="Employee Name"><br>
+
+    <input type="number" id="salary" placeholder="Salary"><br>
+
+    <button id="saveBtn" onclick="saveEmployee()">
+        Add Employee
+    </button>
+
+    <br><br>
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>ID</th>
+                <th>Name</th>
+                <th>Salary</th>
+                <th>Delete</th>
+                <th>Edit</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody id="tbody"></tbody>
+
+    </table>
+
+    <script src="crud.js"></script>
+
+</body>
+
+</html>
