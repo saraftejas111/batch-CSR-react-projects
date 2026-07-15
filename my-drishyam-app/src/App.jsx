@@ -1,6 +1,10 @@
 
 import { useState } from 'react';
 import './App.css'
+import MyCounterApp from './MyCounterApp';
+import MyCounter2 from './MyCounter2';
+import ReadInput from './ReadInput';
+import GenTable from './GenTable';
 
 function App() {
 
@@ -40,11 +44,19 @@ function App() {
     <>
       <h1>Welcome .... {name}</h1>
 
-      <h2>Sum = {5 + 5}</h2>
+      <GenTable/>
+
+      {/* <ReadInput/> */}
+
+      {/* <MyCounterApp/> */}
+
+      {/* <MyCounter2/> */}
+
+      {/* <h2>Sum = {5 + 5}</h2> */}
 
       {/* <h3>{greet()}</h3> */}
 
-      <button onClick={greet}>Greet me</button> <br /><br />
+      {/* <button onClick={greet}>Greet me</button> <br /><br />
 
       <button onClick={increaseCount}>Increase count</button> {" "} <button onClick={handleBcount}>{bcount}x</button><br /><br />
       <button onClick={decreaseCount}>Decrease count</button> <br /><br />
@@ -52,7 +64,7 @@ function App() {
 
       <h4>count : {count}</h4>
 
-      <h4>ucount : {ucount}</h4>
+      <h4>ucount : {ucount}</h4> */}
     </>
   )
 }
