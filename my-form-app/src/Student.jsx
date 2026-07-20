@@ -1,31 +1,49 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { addStudent, deleteByPRN, showAllStudents } from './data'
 
 const Student = () => {
 
     const [allstd, setAllstd] = useState([])
+    const [ref, setRef] = useState(0)
 
-    const [std, setStd] = useState({ prn: '', name: '', email: '', m1: '', m2: '', m3: '' ,  total : ''  , percent: ''})
+    const [std, setStd] = useState({ prn: '', name: '', email: '', m1: '', m2: '', m3: '', total: '', percent: '' })
 
+    useEffect(() => {
+        loadAllStudent();
+    }, [ref])
+
+    const loadAllStudent = () => {
+        setAllstd(showAllStudents())
+    }
     const handleChange = (e) => {
-        const { name, value , type } = e.target;
-
-        setStd({ ...std, [name]: type == 'number' ? Number(value) : value})
+        const { name, value, type } = e.target;
+        setStd({ ...std, [name]: type == 'number' ? Number(value) : value })
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(std)
-        
-         // const t = Number(std.m1)+ Number(std.m2)+ Number(std.m3)
 
-         const t = std.m1+std.m2+std.m3 ; 
+        // const t = Number(std.m1)+ Number(std.m2)+ Number(std.m3)
 
-         const p = ((t/300)*100).toFixed(2)
+        const t = std.m1 + std.m2 + std.m3;
 
-         const newStd = {...std , total: t , percent : p}
+        const p = ((t / 300) * 100).toFixed(2)
 
-        setAllstd([...allstd , newStd])
-        setStd({ prn: '', name: '', email: '', m1: '', m2: '', m3: '' , total : ''  , percent: ''})
+        const newStd = { ...std, total: t, percent: p }
+
+        addStudent(newStd);
+
+        setRef(ref + 1);
+
+        setStd({ prn: '', name: '', email: '', m1: '', m2: '', m3: '', total: '', percent: '' })
+    }
+
+    const handleDelete = (prn) => {
+
+        deleteByPRN(prn)
+        setRef(ref + 1)
+
     }
 
     return (
@@ -59,16 +77,19 @@ const Student = () => {
 
                 <tbody>
                     {
-                        allstd.map((s)=>(
+                        allstd.map((s) => (
                             <tr key={s.prn}>
-                                  <td>{s.prn}</td>
-                                  <td>{s.name}</td>
-                                  <td>{s.email}</td>
-                                  <td>{s.m1}</td>
-                                  <td>{s.m2}</td>
-                                  <td>{s.m3}</td>
-                                  <td>{s.total}</td>
-                                  <td>{s.percent}</td>
+                                <td>{s.prn}</td>
+                                <td>{s.name}</td>
+                                <td>{s.email}</td>
+                                <td>{s.m1}</td>
+                                <td>{s.m2}</td>
+                                <td>{s.m3}</td>
+                                <td>{s.total}</td>
+                                <td>{s.percent}</td>
+                                <td>
+                                    <button onClick={() => handleDelete(s.prn)}>Delete</button>
+                                </td>
                             </tr>
                         ))
                     }
