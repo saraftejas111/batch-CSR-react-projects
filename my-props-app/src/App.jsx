@@ -1,40 +1,56 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './App.css'
 import Sum from './Sum';
 import Difference from './Difference';
 import Multiply from './Multiply';
-import AcceptMsg from './AcceptMsg';
-import EffectFromApp from './EffectFromApp';
-
+import Child from './Child';
+import Employee from './Employee';
+import ShowEmployee from './ShowEmployee';
 
 const App = () => {
 
   const [a, setA] = useState(0)
   const [b, setB] = useState(0)
+  const [childmsg, setChildmsg] = useState('')
+  const [emplist, setEmplist] = useState([])
+  const [edit, setEdit] = useState(null)
 
+  const handleMsg = (msg) => {
+    setChildmsg(msg)
+  }
 
+  const deleteByID = (id) => {
 
-  const sendMsg = () => {
-    return "Hello From Papa"
+    const newData = emplist.filter((e) => e.id != id)
+    setEmplist(newData)
+  }
 
+  const handleUpdate = (e) => {
+    setEdit(e)
+
+  }
+
+  const handleAdd = (emp) => {
+
+    const newData = emplist.filter((e) => e.id != emp.id)
+
+    setEmplist([...newData, emp])
+
+    setEdit(null)
   }
 
   return (
     <div>
       <center>
-        <h1>
-          Welcome to my props app
-        </h1>
+        <h1>Welcome to my props app</h1>
 
-        num1 : <input type="text" onChange={(e) => setA(Number(e.target.value))} /> <br /><br />
-        num2 : <input type="text" onChange={(e) => setB(Number(e.target.value))} />
+        <Child sendMsg={handleMsg} />
 
-        <Sum x={a} y={b} />
-        <Difference a={a} b={b} />
-        <Multiply a={a} b={b} />
+        <h2>Msg From Child : {childmsg}</h2>
 
-          <AcceptMsg recieveMsg={sendMsg}/>
+        <ShowEmployee allemps={emplist} handleDelete={deleteByID} sendUpdate={handleUpdate} />
 
+        <Employee addEmp={handleAdd} acceptUpdate={edit} />
 
       </center>
     </div>
