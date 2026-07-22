@@ -20,7 +20,6 @@ const Employee = ({ addEmp, acceptUpdate }) => {
 
     const handleSumbit = (e) => {
         e.preventDefault();
-        console.log("emp in form ", form)
         setForm({ id: '', name: '', salary: '' })
         addEmp(form)
 
